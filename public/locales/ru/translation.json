@@ -1,0 +1,8 @@
+{
+    "appTitle": "Antispender",
+    "actions": {
+        "ok": "Ок",
+        "cancel": "Отмена",
+        "save": "Сохранить"
+    }
+}
