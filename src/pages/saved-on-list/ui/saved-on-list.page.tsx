@@ -10,6 +10,7 @@ import { savedOnQueries } from 'entities/saved-on';
 import dayjs from 'dayjs';
 import { IconButton, Toolbar, Typography } from '@mui/material';
 import AddOutlined from '@mui/icons-material/AddOutlined';
+import { CreateSavedOnAction } from 'features/saved-on/create-saved-on';
 
 export const SavedOnListPage = () => {
     const { data, isLoading, error, isError } = useQuery(savedOnQueries.list());
@@ -26,9 +27,13 @@ export const SavedOnListPage = () => {
                 <Typography component="div" sx={{ flexGrow: 1 }}>
                     SavedOn
                 </Typography>
-                <IconButton size="small">
-                    <AddOutlined />
-                </IconButton>
+                <CreateSavedOnAction>
+                    {({ onTrigger }) => (
+                        <IconButton size="small" onClick={onTrigger}>
+                            <AddOutlined />
+                        </IconButton>
+                    )}
+                </CreateSavedOnAction>
             </Toolbar>
             <TableContainer>
                 <Table>

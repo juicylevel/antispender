@@ -4,5 +4,10 @@
         "ok": "Ok",
         "cancel": "Cancel",
         "save": "Save"
+    },
+    "savedon": {
+        "form": {
+            "create": "What was the money spent on?"
+        }
     }
 }
