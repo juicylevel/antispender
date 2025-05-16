@@ -18,6 +18,7 @@ import { DDMMYYY } from 'shared/config/date';
 import { dailyRecordQueries } from 'entities/daily-record';
 import { CreateDailyRecordAction } from 'features/daily-record';
 import { isFilled } from 'shared/lib/nil';
+import { useTranslation } from 'react-i18next';
 
 const BadValue: React.FC<TypographyProps> = (props) => {
     return <Typography color="error" fontSize="inherit" {...props} />;
@@ -28,9 +29,11 @@ const SuccessValue: React.FC<TypographyProps> = (props) => {
 };
 
 export const DailyRecordListPage = () => {
-    const { data, isLoading, error, isError } = useQuery(
-        dailyRecordQueries.list()
-    );
+    const { t } = useTranslation();
+    const { data, isLoading, error, isError } = useQuery({
+        ...dailyRecordQueries.list(),
+        enabled: true,
+    });
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -43,11 +46,15 @@ export const DailyRecordListPage = () => {
         <Paper>
             <Toolbar sx={{ pl: 2, pr: 2 }} disableGutters>
                 <Typography component="div" sx={{ flexGrow: 1 }}>
-                    Daily records
+                    {t('dailyRecord.list.title')}
                 </Typography>
                 <CreateDailyRecordAction>
                     {({ onTrigger }) => (
-                        <IconButton size="small" onClick={onTrigger}>
+                        <IconButton
+                            size="small"
+                            title={t('dailyRecord.actions.create.label')}
+                            onClick={onTrigger}
+                        >
                             <AddOutlined />
                         </IconButton>
                     )}
@@ -57,15 +64,21 @@ export const DailyRecordListPage = () => {
                 <Table size="medium">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Дата</TableCell>
-                            <TableCell align="center" colSpan={3}>
-                                Пиво
+                            <TableCell>
+                                {t('dailyRecord.list.columns.date')}
                             </TableCell>
                             <TableCell align="center" colSpan={3}>
-                                Сигареты
+                                {t('dailyRecord.list.columns.beer')}
                             </TableCell>
-                            <TableCell align="right">Потрачено</TableCell>
-                            <TableCell align="right">Сэкономлено</TableCell>
+                            <TableCell align="center" colSpan={3}>
+                                {t('dailyRecord.list.columns.cig')}
+                            </TableCell>
+                            <TableCell align="right">
+                                {t('dailyRecord.list.columns.spent')}
+                            </TableCell>
+                            <TableCell align="right">
+                                {t('dailyRecord.list.columns.saved')}
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -73,7 +86,7 @@ export const DailyRecordListPage = () => {
                             <TableRow>
                                 <TableCell colSpan={9} align="center">
                                     <Typography color="textSecondary">
-                                        записей нет
+                                        {t('dailyRecord.list.empty')}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -124,35 +137,40 @@ export const DailyRecordListPage = () => {
                                 </TableCell>
                             </TableRow>
                         ))}
-                        <TableRow>
-                            <TableCell colSpan={7}>
-                                <Typography fontWeight={600} fontSize="inherit">
-                                    Итого
-                                </Typography>
-                            </TableCell>
-                            <TableCell align="right">
-                                <BadValue fontWeight={600}>
-                                    {data?.reduce((acc, item) => {
-                                        return (
-                                            acc +
-                                            item.spentOnBeer +
-                                            item.spentOnCig
-                                        );
-                                    }, 0)}
-                                </BadValue>
-                            </TableCell>
-                            <TableCell align="right">
-                                <SuccessValue fontWeight={600}>
-                                    {data?.reduce((acc, item) => {
-                                        return (
-                                            acc +
-                                            item.savedOnBeer +
-                                            item.savedOnCig
-                                        );
-                                    }, 0)}
-                                </SuccessValue>
-                            </TableCell>
-                        </TableRow>
+                        {isFilled(data) && (
+                            <TableRow>
+                                <TableCell colSpan={7}>
+                                    <Typography
+                                        fontWeight={600}
+                                        fontSize="inherit"
+                                    >
+                                        {t('dailyRecord.list.summary')}
+                                    </Typography>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <BadValue fontWeight={600}>
+                                        {data?.reduce((acc, item) => {
+                                            return (
+                                                acc +
+                                                item.spentOnBeer +
+                                                item.spentOnCig
+                                            );
+                                        }, 0)}
+                                    </BadValue>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <SuccessValue fontWeight={600}>
+                                        {data?.reduce((acc, item) => {
+                                            return (
+                                                acc +
+                                                item.savedOnBeer +
+                                                item.savedOnCig
+                                            );
+                                        }, 0)}
+                                    </SuccessValue>
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>

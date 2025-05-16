@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionProps, useActionTrigger } from 'shared/ui/action';
 import { FullscreenDialog, useModal } from 'shared/ui/modal';
 
-const formId = 'saved-on-form';
+const formId = 'daily-record-form';
 
 export const CreateDailyRecordAction: React.FC<ActionProps> = ({
     children,
@@ -32,7 +32,7 @@ export const CreateDailyRecordAction: React.FC<ActionProps> = ({
             <FullscreenDialog
                 open={modal.open}
                 onClose={modal.onClose}
-                title={t('savedon.form.create')}
+                title={t('dailyRecord.actions.create.title')}
                 submitForm={formId}
                 okText={t('actions.save')}
             >

@@ -14,7 +14,19 @@ export const LangSwitcher: React.FC<LangSwitcherProps> = (props) => {
         i18n.changeLanguage(event.target.value);
     };
     return (
-        <Select value={i18n.language} onChange={handleChange} {...props}>
+        <Select
+            value={i18n.language}
+            onChange={handleChange}
+            sx={{
+                '.MuiOutlinedInput-notchedOutline': {
+                    border: 0,
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    border: 0,
+                },
+            }}
+            {...props}
+        >
             {i18n.languages.map((lang) => {
                 return (
                     <MenuItem key={lang} value={lang}>

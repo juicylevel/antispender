@@ -5,9 +5,24 @@
         "cancel": "Cancel",
         "save": "Save"
     },
-    "savedon": {
-        "form": {
-            "create": "What was the money spent on?"
+    "dailyRecord": {
+        "list": {
+            "title": "Daily Records",
+            "empty": "No records found.",
+            "summary": "Summary",
+            "columns": {
+                "date": "Date",
+                "beer": "Beer",
+                "cig": "Cig",
+                "spent": "Spent",
+                "saved": "Saved"
+            }
+        },
+        "actions": {
+            "create": {
+                "label": "Create new record",
+                "title": "New daily record"
+            }
         }
     }
 }
