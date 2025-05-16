@@ -1,25 +1,29 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-    createSavedOn,
-    SavedOnForm,
-    SavedOnFormValues,
-    savedOnQueries,
-} from 'entities/saved-on';
+    createDailyRecord,
+    DailyRecordForm,
+    dailyRecordQueries,
+    DailyRecordValues,
+} from 'entities/daily-record';
 import { useTranslation } from 'react-i18next';
 import { ActionProps, useActionTrigger } from 'shared/ui/action';
 import { FullscreenDialog, useModal } from 'shared/ui/modal';
 
 const formId = 'saved-on-form';
 
-export const CreateSavedOnAction: React.FC<ActionProps> = ({ children }) => {
+export const CreateDailyRecordAction: React.FC<ActionProps> = ({
+    children,
+}) => {
     const { t } = useTranslation();
     const modal = useModal();
     const trigger = useActionTrigger(children, modal.show);
-    const { mutateAsync: create } = useMutation({ mutationFn: createSavedOn });
+    const { mutateAsync: create } = useMutation({
+        mutationFn: createDailyRecord,
+    });
     const queryClient = useQueryClient();
-    const handleSubmit = async (values: SavedOnFormValues) => {
+    const handleSubmit = async (values: DailyRecordValues) => {
         await create(values);
-        queryClient.invalidateQueries({ queryKey: savedOnQueries.all() });
+        queryClient.invalidateQueries({ queryKey: dailyRecordQueries.all() });
         modal.close();
     };
     return (
@@ -32,9 +36,16 @@ export const CreateSavedOnAction: React.FC<ActionProps> = ({ children }) => {
                 submitForm={formId}
                 okText={t('actions.save')}
             >
-                <SavedOnForm
+                <DailyRecordForm
                     FormProps={{ id: formId }}
-                    values={{ beer: 0, cig: 0 }}
+                    values={{
+                        litersOfBeer: 0,
+                        spentOnBeer: 0,
+                        savedOnBeer: 550,
+                        cigCount: 0,
+                        spentOnCig: 0,
+                        savedOnCig: Math.round((270 / 20) * 7),
+                    }}
                     onSuccess={handleSubmit}
                 />
             </FullscreenDialog>

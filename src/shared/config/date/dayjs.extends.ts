@@ -13,7 +13,7 @@ dayjs.extend(quarterOfYear);
 dayjs.extend(objectSupport);
 dayjs.extend(isSameOrAfter);
 
-dayjs.extend((option, dayjsClass, dayjsFactory) => {
+dayjs.extend((_, dayjsClass) => {
     const oldFormat = dayjsClass.prototype.format;
 
     dayjsClass.prototype.format = function (formatString) {

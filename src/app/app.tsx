@@ -5,7 +5,7 @@ import { CssBaseline } from '@mui/material';
 import theme from 'shared/ui/theme';
 import { RouterProvider } from 'react-router';
 import router from './router';
-import 'shared/config/dayjs';
+import 'shared/config/date/dayjs.extends';
 
 export const App = () => {
     return (

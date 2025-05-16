@@ -1,6 +1,6 @@
+import { DailyRecordListPage } from 'pages/daily-record-list';
 import { PageLayout } from 'pages/layout';
 import { NoMatchPage } from 'pages/no-match';
-import { SavedOnListPage } from 'pages/saved-on-list';
 import { createBrowserRouter } from 'react-router';
 
 const router = createBrowserRouter(
@@ -10,7 +10,7 @@ const router = createBrowserRouter(
             children: [
                 {
                     path: '/',
-                    element: <SavedOnListPage />,
+                    element: <DailyRecordListPage />,
                 },
                 {
                     path: '*',
