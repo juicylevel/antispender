@@ -144,7 +144,7 @@ export const DailyRecordListPage = () => {
                         ))}
                         {isFilled(data) && (
                             <TableRow>
-                                <TableCell colSpan={8}>
+                                <TableCell colSpan={7}>
                                     <Typography
                                         fontWeight={600}
                                         fontSize="inherit"
@@ -174,6 +174,7 @@ export const DailyRecordListPage = () => {
                                         }, 0)}
                                     </SuccessValue>
                                 </TableCell>
+                                <TableCell />
                             </TableRow>
                         )}
                     </TableBody>

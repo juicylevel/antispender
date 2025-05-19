@@ -15,7 +15,9 @@ export const RecordActions = <R,>({
     return (
         <MenuWithTrigger
             trigger={({ onClick }) => (
-                <IconButton onClick={onClick}>{icon}</IconButton>
+                <IconButton size="small" onClick={onClick}>
+                    {icon}
+                </IconButton>
             )}
             {...menuProps}
         />
