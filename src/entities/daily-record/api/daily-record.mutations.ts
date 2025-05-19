@@ -10,5 +10,5 @@ export const updateDailyRecord = async (data: DailyRecordValues) => {
 };
 
 export const deleteDailyRecord = async (id: string) => {
-    return await api.delete('/daily-record', { params: { objectId: id } });
+    return await api.delete(`/daily-record/${id}`);
 };

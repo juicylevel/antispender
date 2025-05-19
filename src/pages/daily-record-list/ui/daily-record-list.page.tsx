@@ -19,6 +19,7 @@ import { dailyRecordQueries } from 'entities/daily-record';
 import { CreateDailyRecordAction } from 'features/daily-record';
 import { isFilled } from 'shared/lib/nil';
 import { useTranslation } from 'react-i18next';
+import { DailyRecordActions } from 'widgets/daily-record';
 
 const BadValue: React.FC<TypographyProps> = (props) => {
     return <Typography color="error" fontSize="inherit" {...props} />;
@@ -79,6 +80,7 @@ export const DailyRecordListPage = () => {
                             <TableCell align="right">
                                 {t('dailyRecord.list.columns.saved')}
                             </TableCell>
+                            <TableCell align="right" />
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -135,11 +137,14 @@ export const DailyRecordListPage = () => {
                                         {item.savedOnBeer + item.savedOnCig}
                                     </SuccessValue>
                                 </TableCell>
+                                <TableCell align="right">
+                                    <DailyRecordActions record={item} />
+                                </TableCell>
                             </TableRow>
                         ))}
                         {isFilled(data) && (
                             <TableRow>
-                                <TableCell colSpan={7}>
+                                <TableCell colSpan={8}>
                                     <Typography
                                         fontWeight={600}
                                         fontSize="inherit"

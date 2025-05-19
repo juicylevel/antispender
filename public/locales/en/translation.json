@@ -3,7 +3,9 @@
     "actions": {
         "ok": "Ok",
         "cancel": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "agree": "Yes",
+        "disagree": "No"
     },
     "dailyRecord": {
         "list": {
@@ -22,6 +24,15 @@
             "create": {
                 "label": "Create new record",
                 "title": "New daily record"
+            },
+            "delete": {
+                "label": "Delete record",
+                "confirm": {
+                    "title": "Delete record",
+                    "content": "Are you sure you want to delete the record {{date}}?"
+                },
+                "success": "The record was successfully deleted",
+                "error": "An error occurred while deleting the record"
             }
         }
     }
