@@ -4,12 +4,10 @@ import {
     FormContainerProps,
     TextFieldElement,
 } from 'react-hook-form-mui';
+import { DatePickerElement } from 'react-hook-form-mui/date-pickers';
 import { DailyRecordValues } from '../model/daily-record.types';
-
-const transformNumericValue = (value: string) => {
-    const output = parseInt(value, 10);
-    return isNaN(output) ? '' : output;
-};
+import { datePickerTransform } from 'shared/ui/input/date-picker.lib';
+import { inputNumberTransform } from 'shared/ui/input/input-number.lib';
 
 export const DailyRecordForm: React.FC<
     FormContainerProps<DailyRecordValues>
@@ -17,6 +15,23 @@ export const DailyRecordForm: React.FC<
     return (
         <FormContainer {...props}>
             <Grid container spacing={2}>
+                <Grid size={12}>
+                    <DatePickerElement
+                        name="recordDate"
+                        label="Дата"
+                        slotProps={{
+                            field: {
+                                fullWidth: true,
+                            },
+                        }}
+                        format="DD.MM.YYYY"
+                        required
+                        rules={{
+                            required: true,
+                        }}
+                        transform={datePickerTransform}
+                    />
+                </Grid>
                 <Grid size={4}>
                     <TextFieldElement
                         name="litersOfBeer"
@@ -26,11 +41,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
                 <Grid size={4}>
@@ -42,11 +53,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
                 <Grid size={4}>
@@ -58,11 +65,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
                 <Grid size={4}>
@@ -74,11 +77,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
                 <Grid size={4}>
@@ -90,11 +89,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
                 <Grid size={4}>
@@ -106,11 +101,7 @@ export const DailyRecordForm: React.FC<
                         rules={{
                             required: true,
                         }}
-                        transform={{
-                            output: (e) => {
-                                return transformNumericValue(e.target.value);
-                            },
-                        }}
+                        transform={inputNumberTransform}
                     />
                 </Grid>
             </Grid>

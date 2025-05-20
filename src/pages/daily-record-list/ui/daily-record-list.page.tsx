@@ -103,7 +103,7 @@ export const DailyRecordListPage = () => {
                                 }}
                             >
                                 <TableCell>
-                                    {dayjs(item.created).format(DDMMYYY)}
+                                    {dayjs(item.recordDate).format(DDMMYYY)}
                                 </TableCell>
                                 <TableCell align="right">
                                     {item.litersOfBeer}

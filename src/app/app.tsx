@@ -1,4 +1,6 @@
 import { ThemeProvider } from '@mui/material/styles';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from 'shared/api/query-client';
 import { CssBaseline } from '@mui/material';
@@ -16,7 +18,9 @@ export const App = () => {
             <QueryClientProvider client={queryClient}>
                 <DialogsProvider>
                     <NotificationsProvider {...notificationsConfig}>
-                        <RouterProvider router={router} />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <RouterProvider router={router} />
+                        </LocalizationProvider>
                     </NotificationsProvider>
                 </DialogsProvider>
             </QueryClientProvider>

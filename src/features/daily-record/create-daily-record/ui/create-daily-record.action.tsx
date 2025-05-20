@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import {
     createDailyRecord,
     DailyRecordForm,
@@ -6,6 +7,7 @@ import {
     DailyRecordValues,
 } from 'entities/daily-record';
 import { useTranslation } from 'react-i18next';
+import { ISO_DATE } from 'shared/config/date';
 import { ActionProps, useActionTrigger } from 'shared/ui/action';
 import { FullscreenDialog, useModal } from 'shared/ui/modal';
 
@@ -39,6 +41,7 @@ export const CreateDailyRecordAction: React.FC<ActionProps> = ({
                 <DailyRecordForm
                     FormProps={{ id: formId }}
                     values={{
+                        recordDate: dayjs().format(ISO_DATE),
                         litersOfBeer: 0,
                         spentOnBeer: 0,
                         savedOnBeer: 550,

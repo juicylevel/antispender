@@ -1,4 +1,5 @@
 export type DailyRecordValues = {
+    recordDate: string;
     litersOfBeer: number;
     spentOnBeer: number;
     savedOnBeer: number;
