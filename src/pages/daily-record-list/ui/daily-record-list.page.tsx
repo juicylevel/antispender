@@ -7,12 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import {
-    IconButton,
-    Toolbar,
-    Typography,
-    TypographyProps,
-} from '@mui/material';
+import { IconButton, Toolbar, Typography } from '@mui/material';
 import AddOutlined from '@mui/icons-material/AddOutlined';
 import { DDMMYYY } from 'shared/config/date';
 import { dailyRecordQueries } from 'entities/daily-record';
@@ -20,14 +15,8 @@ import { CreateDailyRecordAction } from 'features/daily-record';
 import { isFilled } from 'shared/lib/nil';
 import { useTranslation } from 'react-i18next';
 import { DailyRecordActions } from 'widgets/daily-record';
-
-const BadValue: React.FC<TypographyProps> = (props) => {
-    return <Typography color="error" fontSize="inherit" {...props} />;
-};
-
-const SuccessValue: React.FC<TypographyProps> = (props) => {
-    return <Typography color="success" fontSize="inherit" {...props} />;
-};
+import { SummaryRow } from './summary-row';
+import { CellValue } from './cell-value';
 
 export const DailyRecordListPage = () => {
     const { t } = useTranslation();
@@ -109,74 +98,44 @@ export const DailyRecordListPage = () => {
                                     {item.litersOfBeer}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <BadValue>{item.spentOnBeer}</BadValue>
+                                    <CellValue color="error">
+                                        {item.spentOnBeer}
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <SuccessValue>
+                                    <CellValue color="success">
                                         {item.savedOnBeer}
-                                    </SuccessValue>
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
                                     {item.cigCount}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <BadValue>{item.spentOnCig}</BadValue>
+                                    <CellValue color="error">
+                                        {item.spentOnCig}
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <SuccessValue>
+                                    <CellValue color="success">
                                         {item.savedOnCig}
-                                    </SuccessValue>
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <BadValue>
+                                    <CellValue color="error">
                                         {item.spentOnBeer + item.spentOnCig}
-                                    </BadValue>
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <SuccessValue>
+                                    <CellValue color="success">
                                         {item.savedOnBeer + item.savedOnCig}
-                                    </SuccessValue>
+                                    </CellValue>
                                 </TableCell>
                                 <TableCell align="right">
                                     <DailyRecordActions record={item} />
                                 </TableCell>
                             </TableRow>
                         ))}
-                        {isFilled(data) && (
-                            <TableRow>
-                                <TableCell colSpan={7}>
-                                    <Typography
-                                        fontWeight={600}
-                                        fontSize="inherit"
-                                    >
-                                        {t('dailyRecord.list.summary')}
-                                    </Typography>
-                                </TableCell>
-                                <TableCell align="right">
-                                    <BadValue fontWeight={600}>
-                                        {data?.reduce((acc, item) => {
-                                            return (
-                                                acc +
-                                                item.spentOnBeer +
-                                                item.spentOnCig
-                                            );
-                                        }, 0)}
-                                    </BadValue>
-                                </TableCell>
-                                <TableCell align="right">
-                                    <SuccessValue fontWeight={600}>
-                                        {data?.reduce((acc, item) => {
-                                            return (
-                                                acc +
-                                                item.savedOnBeer +
-                                                item.savedOnCig
-                                            );
-                                        }, 0)}
-                                    </SuccessValue>
-                                </TableCell>
-                                <TableCell />
-                            </TableRow>
-                        )}
+                        {isFilled(data) && <SummaryRow data={data} />}
                     </TableBody>
                 </Table>
             </TableContainer>

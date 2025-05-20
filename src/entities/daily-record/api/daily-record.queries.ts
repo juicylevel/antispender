@@ -9,6 +9,12 @@ export const dailyRecordQueries = {
         queryOptions({
             queryKey: [...dailyRecordQueries.lists()],
             queryFn: () =>
-                api.get<DailyRecord[]>('/daily-record').then((res) => res.data),
+                api
+                    .get<DailyRecord[]>('/daily-record', {
+                        params: {
+                            sortBy: '`recordDate`desc',
+                        },
+                    })
+                    .then((res) => res.data),
         }),
 };
