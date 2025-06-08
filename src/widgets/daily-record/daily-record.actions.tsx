@@ -1,6 +1,9 @@
-import { DeleteOutline } from '@mui/icons-material';
+import { DeleteOutline, EditOutlined } from '@mui/icons-material';
 import { DailyRecord } from 'entities/daily-record';
-import { DeleteDailyRecordAction } from 'features/daily-record';
+import {
+    DeleteDailyRecordAction,
+    UpdateDailyRecordAction,
+} from 'features/daily-record';
 import { useTranslation } from 'react-i18next';
 import { RecordActions, RecordActionsProps } from 'shared/ui/action';
 import { MenuItemIcon } from 'shared/ui/menu';
@@ -12,6 +15,13 @@ export const DailyRecordActions: React.FC<RecordActionsProps<DailyRecord>> = ({
     const { t } = useTranslation();
     return (
         <RecordActions keepMounted {...rest}>
+            <UpdateDailyRecordAction record={record}>
+                {({ onTrigger }) => (
+                    <MenuItemIcon icon={<EditOutlined />} onClick={onTrigger}>
+                        {t('dailyRecord.actions.update.label')}
+                    </MenuItemIcon>
+                )}
+            </UpdateDailyRecordAction>
             <DeleteDailyRecordAction record={record}>
                 {({ onTrigger }) => (
                     <MenuItemIcon icon={<DeleteOutline />} onClick={onTrigger}>

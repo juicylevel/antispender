@@ -25,6 +25,10 @@
                 "label": "Create new record",
                 "title": "New daily record"
             },
+            "update": {
+                "label": "Update record",
+                "title": "Update daily record"
+            },
             "delete": {
                 "label": "Delete record",
                 "confirm": {
