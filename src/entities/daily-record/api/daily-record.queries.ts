@@ -14,6 +14,7 @@ export const dailyRecordQueries = {
                 api
                     .get<DailyRecord[]>('/daily-record', {
                         params: {
+                            pageSize: 100,
                             sortBy: '`recordDate`desc',
                         },
                     })

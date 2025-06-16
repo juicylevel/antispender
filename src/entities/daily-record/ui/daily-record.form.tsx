@@ -98,7 +98,7 @@ const ChangeModeHandler: React.FC<{ mode?: FormMode }> = ({ mode }) => {
 const getModeByValues = (values?: DailyRecordValues): FormMode | undefined => {
     if (!isDefined(values)) return;
 
-    return (values.spentOnBeer ?? 0) > 0 || (values.spentOnCig ?? 0) > 0
+    return values.spentOnBeer > 0 || values.spentOnCig > 0
         ? FormMode.SPENDING
         : FormMode.NO_SPENDING;
 };
