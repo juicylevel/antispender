@@ -43,7 +43,7 @@ export const CreateDailyRecordAction: React.FC<ActionProps> = ({
             >
                 <DailyRecordForm
                     FormProps={{ id: formId }}
-                    values={{
+                    defaultValues={{
                         recordDate: dayjs().format(ISO_DATE),
                         litersOfBeer: 0,
                         spentOnBeer: 0,

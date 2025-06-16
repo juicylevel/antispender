@@ -56,7 +56,7 @@ export const UpdateDailyRecordAction: React.FC<
             >
                 <DailyRecordForm
                     FormProps={{ id: formId }}
-                    values={initialValues}
+                    defaultValues={initialValues}
                     onSuccess={handleSubmit}
                 />
             </FullscreenDialog>
